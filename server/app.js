@@ -13,6 +13,7 @@ app.use(bodyParser.raw({type: 'application/json'}))
 app.post('/webhook', function (req, res) {
 
   var req_body = JSON.parse(req.body.toString());
+
   // only do things when event: all_trips.status_changed
   // because sandbox gives you double webhooks
   if (validateWebhook(req) && (req_body.event_type == "all_trips.status_changed")){
@@ -26,7 +27,7 @@ app.post('/webhook', function (req, res) {
 
 function validateWebhook(req){
   const crypto = require('crypto');
-  const hmac = crypto.createHmac('sha256', process.env.uber_client_secret);
+  const hmac = crypto.createHmac('sha256', process.env.UBER_CLIENT_SECRET);
 
   // make sure that we used bodyParser.raw() for req
   // so that we're computing based on the raw request, not the parsed one

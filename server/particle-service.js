@@ -3,13 +3,13 @@ exports.stateChange = function (ride_status) {
 
   const https = require('https');
   const querystring = require('querystring');
-  const device_url = "https://api.particle.io/v1/devices/" + process.env.device_uuid + "/state-change";
+  const device_url = "https://api.particle.io/v1/devices/" + process.env.DEVICE_UUID + "/state-change";
 
   console.log("requesting change: ", ride_status);
 
   var postData = querystring.stringify({
     args: ride_status,
-    access_token: process.env.device_access_token
+    access_token: process.env.DEVICE_ACCESS_TOKEN
   });
 
 
