@@ -1,28 +1,27 @@
 # Sharknicorn Hat
 This repo contains the sample code for making an Uber-aware hat that I describe in [this article](https://medium.com/@charlyn/12-months-of-makes-88bc288d41df).
 
-# Prerequisites
+# Installation
 
-1. You must have ngrok installed
-2. You must have nodeJS installed
-3. You must setup your Particle device using `particle.io/start` or [watch this video that uses the Particle mobile app to setup](https://vimeo.com/178282058)
-3. Go to [developer.uber.com](http://developer.uber.com/), click `Sign in` and log into the developer dashboard with your existing Uber account. If you do not have an Uber account you will have to sign up for one.
-  - Then, when you get access to the developer dashboard, click "create app"
-  - find your `Client Secret` and take note of it, you'll need it below.
-4. Go to [build.particle.io](https://build.particle.io/)
-  - Click on the Devices icon (looks like a scope)
-    - Click on the `>` arrow next to your device
-    - Take note of the `Device ID`, you'll need it below
-  - Click on the Settings icon (looks like a gear)
-    - Take note of the `Access Token`, you'll need it below
+After cloning this repo:
+```
+cd server/
+npm install
+```
+
+# Firmware
+
+Copy the contents of `firmware/sharknicorn.ino` to a new app in your Particle dashboard [build.particle.io](https://build.particle.io).
+
+You must setup your Particle device using `particle.io/start` or [watch this video that uses the Particle mobile app to setup](https://vimeo.com/178282058)
 
 # Server Setup
 
-1. After cloning this repo, `cd` into `server/` and run
-```
-npm install
-```
-2. Then, create a file `.env` inside your `server/` folder (make sure it's inside the server folder!)
+1. You must have ngrok installed
+2. You must have nodeJS installed
+
+## Gather credentials
+Then, create a file `.env` inside your `server/` folder (make sure it's inside the server folder!)
 ```
 touch .env
 ```
@@ -32,6 +31,19 @@ UBER_CLIENT_SECRET=YOUR_UBER_CLIENT_SECRET
 DEVICE_UUID=YOUR_PARTICLE_DEVICE_UUID
 DEVICE_ACCESS_TOKEN=YOUR_PARTICLE_DEVICE_ACCESS_TOKEN
 ```
+The following describes how you can get the above values:
+1. Go to [developer.uber.com](http://developer.uber.com/), click `Sign in` and log into the developer dashboard with your existing Uber account. If you do not have an Uber account you will have to sign up for one.
+    - Then, when you get access to the developer dashboard, click "create app"
+    - Copy your `Client Secret` and replace `YOUR_UBER_CLIENT_SECRET` above with it
+2. Go to [build.particle.io](https://build.particle.io/)
+    - Click on the Devices icon (looks like a scope)
+      - Click on the `>` arrow next to your device
+      - Copy your `Device ID` and replace `YOUR_PARTICLE_DEVICE_UUID` above with it
+    - Click on the Settings icon (looks like a gear)
+      - Copy your `Access Token`, and replace `YOUR_PARTICLE_DEVICE_ACCESS_TOKEN` above with it
+
+
+
 
 # Running the server
 
@@ -52,7 +64,7 @@ For example:
 ```
 https://55fe6bd8.ngrok.io/webhook
 ```
-Make sure you click `Save` at the bottom of the page!
+Make sure you click `Save` at the bottom of the page! Note that this ngrok URL changes everytime you quit ngrok.
 
 That's it! Your server is now running and is now connected to your Particle Device
 
